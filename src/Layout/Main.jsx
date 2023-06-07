@@ -6,8 +6,8 @@ import {Outlet,useLocation} from 'react-router-dom'
 const Main = () => {
     return (
         <div>
-            <Navbar></Navbar>
-             <Outlet></Outlet>
+            <div className="pb-24"><Navbar></Navbar></div>
+            <Outlet></Outlet>
             <Footer></Footer>
         </div>
     );

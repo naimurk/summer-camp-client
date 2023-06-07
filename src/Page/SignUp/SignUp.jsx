@@ -1,13 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useAllusers from "../../Hooks/useAllusers";
 
 const SignUp = () => {
-  const [allUser, setAllUser] = useState([]);
+  const [allUser] = useAllusers()
   const { createUser, logOut, UserUpdateProfile } = useContext(AuthContext);
   const {
     register,
@@ -22,14 +23,78 @@ const SignUp = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = (data) => {
+ 
+
+
+  const onSubmit =  (data) => {
+
+    const person = allUser.find(s => s.email === data.email)
+
+
     if (data.password !== data.confirmPassword) {
       Swal.fire("Error", "Passwords do not match", "error");
       return;
     }
-    console.log(data);
-    // Rest of your submit logic
+    console.log(data.email, data.password ,data);
+
+
+    if(person?.email){
+      Swal.fire({
+        icon: 'error',
+        title: 'Email already exist!',
+        text: '',
+        
+      })
+    }
+    else {
+      createUser(data.email, data.password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+
+        // update function call here 
+        UserUpdateProfile(data.name, data.photo)
+          .then(() => {
+            const student = "student"
+            const saveUser = { name: data.name, email: data.email,  role: student }
+            fetch('http://localhost:5000/users', {
+              method: "POST",
+              headers: {
+                'content-type': "application/json"
+              },
+              body: JSON.stringify(saveUser)
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.insertedId) {
+                  reset();
+                  // login function call here 
+                  logOut()
+                    .then(() => { })
+                    .catch(error => console.log(error))
+                  Swal.fire('Created Account successfully ')
+                  navigate(from, { replace: true });
+
+                }
+              })
+
+          })
+
+
+
+      })
+    }
+
+
+
+
+   
+
   };
+
+
+
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
