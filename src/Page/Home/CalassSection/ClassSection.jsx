@@ -12,7 +12,7 @@ const ClassSection = () => {
             <div className="grid mt-12 w-3/4 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-center items-center">
             {
                 classes.map(item => <section key={item._id}>
-                    <img className="w-full h-3/5" src={item.image} alt="" />
+                    <img className="w-full h-96" src={item.image} alt="" />
                 </section>)
             }
         </div>

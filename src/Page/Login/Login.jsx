@@ -19,14 +19,22 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  let from = location.state?.from?.pathname || "/login";
+  let from = location.state?.from?.pathname || "/";
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const onSubmit = (data) => {
+    
     console.log(data);
+    signIn(data.email,data.password)
+        .then(result => {
+            const user = result.user ;
+            console.log(user)
+            Swal.fire('login successfully ')
+        })
+        navigate(from, { replace: true });
   };
 
   return (
