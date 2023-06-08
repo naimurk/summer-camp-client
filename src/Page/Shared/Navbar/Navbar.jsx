@@ -1,34 +1,46 @@
-import { Link,NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { useContext } from "react";
+import useCarts from "../../../Hooks/useCarts";
+import {BsFillCartCheckFill} from 'react-icons/bs';
+import useIsStudent from "../../../Hooks/useIsStudent";
 
 const Navbar = () => {
-
-
+   const [isStudent] = useIsStudent()
+   const [carts ] = useCarts()
     const { user, logOut } = useContext(AuthContext);
-    
+
     const handleLogout = () => {
         logOut()
             .then(() => { })
             .catch(error => console.log(error))
     }
-    
-   const  navOptions = <>
-   
-   <li className=" mx-4"> <NavLink to={'/'}> Home</NavLink></li>
-   <li className=" mx-4"> <NavLink to={'/classes'}> Classes</NavLink></li>
-   <li className=" mx-4"> <NavLink to={'/instructors'}> Instructors</NavLink></li>
-   
 
-   {
-    user ? <>
-    <li className=" mx-4"> <NavLink to={'/dashboard'}> DashBoard</NavLink></li>
-    <button onClick={handleLogout} >log Out </button>
-    </> : <li className=" mx-4"> <NavLink to={'/login'}> login</NavLink></li>
-   }
-  
-   
-   </>
+    const navOptions = <>
+
+        <li className=" mx-4"> <NavLink to={'/'}> Home</NavLink></li>
+        <li className=" mx-4"> <NavLink to={'/classes'}> Classes</NavLink></li>
+        <li className=" mx-4"> <NavLink to={'/instructors'}> Instructors</NavLink></li>
+
+
+        {
+            user ? <>
+                <li className=" mx-4"> <NavLink to={'/dashBoard'}> DashBoard</NavLink></li>
+                <button onClick={handleLogout} >log Out </button>
+            </> : <li className=" mx-4"> <NavLink to={'/login'}> login</NavLink></li>
+        }
+
+        {
+            isStudent?.admin &&  <li>
+            <Link to={'/dashboard/my-cart'} ><button className="btn gap-2">
+                <BsFillCartCheckFill></BsFillCartCheckFill>
+                <div className="badge badge-secondary">{carts ? carts.length : 0}</div>
+            </button></Link>
+        </li>
+        }
+
+
+    </>
 
     return (
         <div className="navbar fixed z-10 bg-opacity-40 text-white bg-black">

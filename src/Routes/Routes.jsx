@@ -8,6 +8,8 @@ import Login from "../Page/Login/Login";
 import SignUp from "../Page/SignUp/SignUp";
 import Classes from "../Page/Classes/Classes";
 import Instructors from "../Page/Instructors/Instructors";
+import PrivateRoutes from "./PrivateRoutes";
+import DashBoard from "../Layout/DashBoard/DashBoard/DashBoard";
 
 
  export const router = createBrowserRouter([
@@ -36,5 +38,10 @@ import Instructors from "../Page/Instructors/Instructors";
             element : <Instructors></Instructors>
         },
       ]
+    },
+    {
+      path: "/dashBoard",
+      element: <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
+      
     },
   ]);

@@ -1,7 +1,9 @@
 
 
+
 const InstructorCard = ({ item }) => {
     const { _id, image, instructor_name, email } = item
+    
     return (
         <div className="card card-side bg-base-100 shadow-xl">
             <figure className="w-1/2"><img className="w-full h-96" src={image} alt="Movie" /></figure>
