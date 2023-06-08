@@ -9,7 +9,7 @@ import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 const Checkout = ({item}) => {
    
     console.log(item);
-    const {ClassId,_id,image, email,instructor_name,price, available_seats,className } = item
+    const {ClassId,_id,image, email,instructor_name,price, available_seats,classname } = item
 
     const stripe = useStripe();
     const elements = useElements();
@@ -123,7 +123,7 @@ const Checkout = ({item}) => {
             transaction: paymentIntent?.id,
             // total_item : carts?.length  ,
             // itemNames : user && carts?.map(item => item.name),
-            className : className,
+            className : classname,
             itemId : _id,
             // itemId : user && carts?.map(item => item._id),
             // item : user && carts?.map(item => item),
