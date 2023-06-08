@@ -6,8 +6,10 @@ import Swal from "sweetalert2";
 import useCarts from "../../../../Hooks/useCarts";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 
-const Checkout = () => {
+const Checkout = ({item}) => {
    
+    console.log(item);
+    const {ClassId,_id,image, email,instructor_name,price, available_seats,className } = item
 
     const stripe = useStripe();
     const elements = useElements();
@@ -17,8 +19,8 @@ const Checkout = () => {
     console.log(carts);
     const [clientSecret, setClientSecret] = useState("");
     const [processing , setProcessing] = useState(false)
-    const total = user && carts.reduce((sum, item) => sum + item.price, 0);
-    const price = parseFloat(total?.toFixed(2));
+    // const total = user && carts?.reduce((sum, item) => sum + item.price, 0);
+    // const price = parseFloat(total?.toFixed(2));
     const [message , setMessage] = useState('')
     // console.log(price);
     const token = localStorage.getItem('access-token')
@@ -119,29 +121,40 @@ const Checkout = () => {
             email : user?.email,
             data : new Date(),
             transaction: paymentIntent?.id,
-            total_item : carts?.length  ,
-            itemNames : user && carts?.map(item => item.name),
-            itemId : user && carts?.map(item => item._id),
-            foodId : user && carts?.map(item => item.foodId)
+            // total_item : carts?.length  ,
+            // itemNames : user && carts?.map(item => item.name),
+            className : className,
+            itemId : _id,
+            // itemId : user && carts?.map(item => item._id),
+            // item : user && carts?.map(item => item),
+            ClassId : ClassId,
+            instructor_name : instructor_name,
+            available_seats : available_seats,
+            image : image,
+            price : price
             
             
         }
 
-        // fetch('http://localhost:5000/payment', {
-        //     method : "POST", 
-        //     headers : {
-        //         'content-type' : 'application/json'
-        //     },
-        //     body : JSON.stringify(payment)
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     if(data.result.insertedId ){
-        //         refetch();
+        // console.log(payment.item);
+
+       
+
+        fetch('http://localhost:5000/payment', {
+            method : "POST", 
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body : JSON.stringify(payment)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.result.insertedId ){
+                refetch();
                 
-        //     }
+            }
             
-        // })
+        })
         
        }
 

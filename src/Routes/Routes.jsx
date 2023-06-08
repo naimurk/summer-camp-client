@@ -13,6 +13,7 @@ import DashBoard from "../Layout/DashBoard/DashBoard/DashBoard";
 import StudentRoutes from "./StudentRoutes";
 import MySelectedClasses from "../Layout/DashBoard/StudentDashBoard/MySelectedClasses";
 import Payment from "../Layout/DashBoard/StudentDashBoard/Payment/Payment";
+import Enrolled from "../Layout/DashBoard/StudentDashBoard/Enrolled/Enrolled";
 
 
  export const router = createBrowserRouter([
@@ -53,6 +54,10 @@ import Payment from "../Layout/DashBoard/StudentDashBoard/Payment/Payment";
         {
           path : 'payment',
           element : <StudentRoutes><Payment></Payment></StudentRoutes>
+        },
+        {
+          path : 'enrolled',
+          element : <StudentRoutes><Enrolled></Enrolled></StudentRoutes>
         },
       ]
       
