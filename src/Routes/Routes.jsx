@@ -10,6 +10,9 @@ import Classes from "../Page/Classes/Classes";
 import Instructors from "../Page/Instructors/Instructors";
 import PrivateRoutes from "./PrivateRoutes";
 import DashBoard from "../Layout/DashBoard/DashBoard/DashBoard";
+import StudentRoutes from "./StudentRoutes";
+import MySelectedClasses from "../Layout/DashBoard/StudentDashBoard/MySelectedClasses";
+import Payment from "../Layout/DashBoard/StudentDashBoard/Payment/Payment";
 
 
  export const router = createBrowserRouter([
@@ -40,8 +43,18 @@ import DashBoard from "../Layout/DashBoard/DashBoard/DashBoard";
       ]
     },
     {
-      path: "/dashBoard",
+      path: "dashBoard",
       element: <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
+      children : [
+        {
+          path : 'myCart',
+          element : <StudentRoutes><MySelectedClasses></MySelectedClasses></StudentRoutes>
+        },
+        {
+          path : 'payment',
+          element : <StudentRoutes><Payment></Payment></StudentRoutes>
+        },
+      ]
       
     },
   ]);

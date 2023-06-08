@@ -21,9 +21,9 @@ const ClassesCard = ({ item }) => {
     
 
   const handleAddToCart = (item)=> {
-   const { _id, price, available_seats, className, instructor_name,image} = item
+   const { _id, price, available_seats, classname, instructor_name,image} = item
     if(isStudent.admin && user) {
-       const oderItem = { foodId: _id, price, available_seats, className, instructor_name,image, email: user?.email}
+       const oderItem = { foodId: _id, price, available_seats, classname, instructor_name,image, email: user?.email}
        fetch('http://localhost:5000/carts',
              {
                 method : 'POST', 

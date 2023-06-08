@@ -19,12 +19,12 @@ const DashBoard = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+                <ul className="menu p-4 w-80 mt-24 h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
                     {
                         isStudent?.admin && 
                         <>
-                        <li className="my-3"><NavLink>My Selected Classes</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/myCart'}>My Selected Classes</NavLink></li>
                         <li className="my-3"><NavLink>My Enrolled Classes</NavLink></li>
                         </>
                     }
@@ -43,7 +43,11 @@ const DashBoard = () => {
                         </>
                     }
                   
-                   
+                  <div className="divider "></div>
+                  
+                  <li className="my-3"><NavLink to={'/home'}>Home</NavLink></li>
+                  <li className="my-3"><NavLink to={'/classes'}>classes</NavLink></li>
+                  <li className="my-3"><NavLink to={'/instructors'}>instructors</NavLink></li>
 
                 </ul>
 

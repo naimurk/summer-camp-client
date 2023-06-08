@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const useCarts = () => {
-    const {user} = useContext(AuthContext);
+    const {user,loading} = useContext(AuthContext);
     // console.log(user.email);
     const token = localStorage.getItem('access-token')
 
@@ -12,13 +12,14 @@ const useCarts = () => {
 
         
         queryFn: async ()=> {
-            const response = await fetch(`http://localhost:5000/carts?email=${user?.email}`,{
+            const response = await fetch(`http://localhost:5000/my-carts?email=${user?.email}`,{
                 headers : {
                     authorization : `bearer ${token}`
                 }
             })
             return response.json();
         },
+        enabled : !loading && !!user?.email
       })
  
 
