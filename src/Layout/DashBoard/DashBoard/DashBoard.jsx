@@ -40,7 +40,7 @@ const DashBoard = () => {
                         isInstructor?.admin && 
                         <>
                         <li className="my-3"><NavLink to={'/dashBoard/addClass'}>Add Class</NavLink></li>
-                        <li className="my-3"><NavLink>My Classes</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/myAddedClass'}>My Classes</NavLink></li>
                         </>
                     }
                     {
