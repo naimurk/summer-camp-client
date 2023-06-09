@@ -39,7 +39,11 @@ const ManageUser = () => {
     setDisabledButtons(prevDisabledButtons => [...prevDisabledButtons, id]);
 
     fetch(`http://localhost:5000/makeInstructor/${id}`, {
-      method: 'PATCH'
+      method: 'PATCH',
+      headers : {
+        
+      }
+      
     })
       .then(res => res.json())
       .then(data => {
