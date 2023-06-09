@@ -12,12 +12,15 @@ const AdminRoutes = ({children}) => {
     // const allFromAdmin = useAdmin()
     const location = useLocation()
     //  console.log(allFromAdmin);
-    if(loading || isLoading) {
-        return <progress className="progress w-56"></progress>
-    }
+
     if (isAdmin?.admin && user){
         return children
     }
+
+    if(loading || isLoading) {
+        return <progress className="progress w-56"></progress>
+    }
+   
     return <Navigate to={'/'} state={{from : location}} replace ></Navigate>
 };
 

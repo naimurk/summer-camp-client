@@ -39,7 +39,7 @@ const DashBoard = () => {
                     {
                         isInstructor?.admin && 
                         <>
-                        <li className="my-3"><NavLink>Add Class</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/addClass'}>Add Class</NavLink></li>
                         <li className="my-3"><NavLink>My Classes</NavLink></li>
                         </>
                     }
@@ -47,7 +47,7 @@ const DashBoard = () => {
                         isAdmin?.admin && 
                         <>
                         <li className="my-3"><NavLink>Manage Classes</NavLink></li>
-                        <li className="my-3"><NavLink>Manage User</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/manage-users'}>Manage User</NavLink></li>
                         </>
                     }
                   
