@@ -16,7 +16,7 @@ const AddClass = () => {
             email: email,
             image: classImage,
             classname: className,
-            available_seats: available_seats,
+            available_seats: parseFloat(available_seats),
             price,
             instructor_name: name,
             status: 'pending',

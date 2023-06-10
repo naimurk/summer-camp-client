@@ -9,15 +9,15 @@ import useClasses from "../../../../Hooks/useClasses";
 
 const Checkout = ({ item }) => {
 
-    console.log(item);
-    const { ClassId, _id, image, email, instructor_name, price, available_seats, classname } = item
+    // console.log(item);
+    const { ClassId, _id, image, email, enrolled, instructor_name, price,  available_seats, classname } = item
     // const [refetch] = useClasses()
     const stripe = useStripe();
     const elements = useElements();
     const { user, loading } = useContext(AuthContext)
     const [errorP, setErrorP] = useState('')
     const [carts, refetch] = useCarts();
-    console.log(carts);
+    // console.log(carts);
     const [clientSecret, setClientSecret] = useState("");
     const [processing, setProcessing] = useState(false)
     // const total = user && carts?.reduce((sum, item) => sum + item.price, 0);
@@ -132,12 +132,14 @@ const Checkout = ({ item }) => {
                 instructor_name: instructor_name,
                 available_seats: available_seats,
                 image: image,
-                price: price
+                price: price,
+                enrolled: enrolled
 
 
             }
 
             // console.log(payment.item);
+            console.log(enrolled);
 
 
 
@@ -155,7 +157,9 @@ const Checkout = ({ item }) => {
                         fetch(`http://localhost:5000/classes/update/${ClassId}`, {
                             method: 'PATCH',
                             headers : {
-                                'content-type': 'application/json'
+                                'content-type': 'application/json',
+                                authorization : `bearer ${token}`
+
                             },
                             body: JSON.stringify({available_seats})
                             
@@ -163,6 +167,20 @@ const Checkout = ({ item }) => {
                             .then(res => res.json())
                             .then(data => {
                                 console.log(data);
+                                if(data?.modifiedCount>0 ){
+                                    fetch(`http://localhost:5000/updateEnrolled/${ClassId}`,{
+                                        method: 'PATCH',
+                                        headers : {
+                                            'content-type': 'application/json',
+                                            authorization : `bearer ${token}`
+            
+                                        },
+                                        body: JSON.stringify({enrolled,available_seats})
+                                          
+                                    })
+                                    .then(res => res.json())
+                                    .then(data => console.log(data))
+                                }
                                
                             })
 

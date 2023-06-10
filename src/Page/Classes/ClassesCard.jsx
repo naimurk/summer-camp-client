@@ -14,16 +14,16 @@ const ClassesCard = ({ item }) => {
     const [isInstructor] = useIsInstructor();
     // console.log(isAdmin, isStudent, isInstructor);
     const {user} = useContext(AuthContext)
-    const { _id, image, price, available_seats, classname, instructor_name } = item
+    const { _id, image, price, available_seats, enrolled, classname, instructor_name } = item
     const navigate = useNavigate()
    const [carts ,refetch] = useCarts()
-   console.log(carts);
+//    console.log(carts);
     
 
   const handleAddToCart = (item)=> {
-   const { _id, price, available_seats, classname, instructor_name,image} = item
+   const { _id, price, available_seats, enrolled,  classname, instructor_name,image} = item
     if(isStudent.admin && user) {
-       const oderItem = { ClassId: _id, price, available_seats, classname, instructor_name,image, email: user?.email}
+       const oderItem = { ClassId: _id, price, enrolled,   available_seats, classname, instructor_name,image, email: user?.email}
        fetch('http://localhost:5000/carts',
              {
                 method : 'POST', 
