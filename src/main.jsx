@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { router } from './Routes/Routes';
+import Modal from 'react-modal';
 import './index.css'
 import {
 
@@ -17,7 +18,8 @@ import {
 } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
-
+// Set the app element
+Modal.setAppElement('#root');
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
 
@@ -29,3 +31,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
   </React.StrictMode>,
 )
+
+
