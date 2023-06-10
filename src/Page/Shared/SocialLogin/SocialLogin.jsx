@@ -14,7 +14,7 @@ const SocialLogin = () => {
   const handleSocialLogin = () => {
     googleSignIn().then((result) => {
       const loggedUser = result.user;
-      const saveUser = { name: loggedUser.displayName, email: loggedUser.email };
+      const saveUser = { name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL  };
       console.log(loggedUser);
 
       axios.post("http://localhost:5000/users", saveUser, {

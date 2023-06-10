@@ -10,7 +10,7 @@ import useClasses from "../../../../Hooks/useClasses";
 const Checkout = ({ item }) => {
 
     // console.log(item);
-    const { ClassId, _id, image, email, enrolled, instructor_name, price,  available_seats, classname } = item
+    const { ClassId, _id, image, email, instructor_email, enrolled, instructor_name, price, available_seats, classname } = item
     // const [refetch] = useClasses()
     const stripe = useStripe();
     const elements = useElements();
@@ -133,13 +133,14 @@ const Checkout = ({ item }) => {
                 available_seats: available_seats,
                 image: image,
                 price: price,
-                enrolled: enrolled
+                enrolled: enrolled,
+                instructor_email: instructor_email
 
 
             }
 
             // console.log(payment.item);
-            console.log(enrolled);
+            console.log(instructor_email);
 
 
 
@@ -156,32 +157,46 @@ const Checkout = ({ item }) => {
                         refetch();
                         fetch(`http://localhost:5000/classes/update/${ClassId}`, {
                             method: 'PATCH',
-                            headers : {
+                            headers: {
                                 'content-type': 'application/json',
-                                authorization : `bearer ${token}`
+                                authorization: `bearer ${token}`
 
                             },
-                            body: JSON.stringify({available_seats,enrolled})
-                            
+                            body: JSON.stringify({ available_seats, enrolled })
+
                         })
                             .then(res => res.json())
                             .then(data => {
                                 console.log(data);
-                                if(data?.modifiedCount>0 ){
-                                    fetch(`http://localhost:5000/updateEnrolled/${ClassId}`,{
+                                if (data?.modifiedCount > 0) {
+                                    fetch(`http://localhost:5000/updateEnrolled/${ClassId}`, {
                                         method: 'PATCH',
-                                        headers : {
+                                        headers: {
                                             'content-type': 'application/json',
-                                            authorization : `bearer ${token}`
-            
+                                            authorization: `bearer ${token}`
+
                                         },
-                                        body: JSON.stringify({enrolled,available_seats})
-                                          
+                                        body: JSON.stringify({ enrolled, available_seats })
+
                                     })
-                                    .then(res => res.json())
-                                    .then(data => console.log(data))
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.modifiedCount > 0) {
+                                                fetch(`http://localhost:5000/addEnrolled-user/${instructor_email}`, {
+                                                    method: 'PATCH',
+                                                    headers: {
+                                                        'content-type': 'application/json',
+                                                        authorization: `bearer ${token}`
+
+                                                    },
+                                                    body: JSON.stringify({ enrolled})
+                                                })
+                                                .then(res => res.json())
+                                                .then(data => console.log(data))
+                                            }
+                                        })
                                 }
-                               
+
                             })
 
                     }
