@@ -12,10 +12,31 @@ const ManageClasses = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
 
-  const { register, handleSubmit, formState: { errors },setValue } = useForm();
+  const { register, handleSubmit, formState: { errors },setValue,reset } = useForm();
   const onSubmit = data => {
-    console.log(data);
-    // Handle form submission here
+    // const feedback =data?.feedback
+    // const id = data?.id
+   if(data){
+
+    fetch(`http://localhost:5000/feedback/${data?.id}`, {
+      method : 'PATCH',
+      headers: {
+        authorization: `bearer ${token}`,
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+      
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+
+   }
+
+   else {
+    return('no data ')
+   }
+    
+  
   };
 
   const handleApprove = (id, item) => {
@@ -112,6 +133,7 @@ const ManageClasses = () => {
                 <th>image</th>
                 <th>Name</th>
                 <th>price</th>
+                <th>instructor email</th>
                 <th>available seats</th>
                 <th>status</th>
                 <th>approved</th>
@@ -135,6 +157,7 @@ const ManageClasses = () => {
                   </td>
                   <td>{item?.classname}</td>
                   <td>{item?.price}</td>
+                  <td>{item?.email}</td>
                   <td>{item?.available_seats}</td>
                   <td>{item?.status}</td>
                   <td>
