@@ -11,7 +11,7 @@ const ClassSection = () => {
         <Fade cascade>
             <div className=" py-8  lg:py-24">
 
-                <h1 className="text-center py-8 lg:py-14 text-3xl font-semibold text-slate-50">Popular Sports Classes </h1>
+                <h1 className="text-center py-8 lg:py-14 text-3xl font-semibold ">Popular Sports Classes </h1>
                 <div className="grid mt-12 w-3/4 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-center items-center">
                     {
                         classes.map(item => <section  key={item._id}>
