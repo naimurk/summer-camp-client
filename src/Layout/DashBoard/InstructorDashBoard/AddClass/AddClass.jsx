@@ -21,7 +21,9 @@ const AddClass = () => {
             instructor_name: name,
             status: 'pending',
             feedback: '',
-            enrolled: 0
+            enrolled: 0,
+            instructor_image: user?.photoURL
+
         }
         // console.log(classItem);
 

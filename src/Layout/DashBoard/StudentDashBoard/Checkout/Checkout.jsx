@@ -161,7 +161,7 @@ const Checkout = ({ item }) => {
                                 authorization : `bearer ${token}`
 
                             },
-                            body: JSON.stringify({available_seats})
+                            body: JSON.stringify({available_seats,enrolled})
                             
                         })
                             .then(res => res.json())

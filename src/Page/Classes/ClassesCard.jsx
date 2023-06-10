@@ -6,6 +6,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import useCarts from "../../Hooks/useCarts";
+import 'animate.css'
 
 
 const ClassesCard = ({ item }) => {
@@ -78,13 +79,14 @@ const ClassesCard = ({ item }) => {
 
 
     return (
-        <div className={`card w-96 bg-base-100 shadow-xl ${available_seats == 0 ? 'bg-red-500' :''}`}>
+        <div className={`card w-96 bg-base-100 shadow-xl className="animate__pulse" ${available_seats == 0 ? 'bg-red-500' :''}`}>
             <figure><img className="w-full h-1/2" src={image} alt="Shoes" /></figure>
             <div className={`card-body `}>
                 <h2 className="card-title">{classname}</h2>
                 <p className="font-semibold text-2xl">instructor name : {instructor_name}</p>
                 <p className="text-red-400 font-bold">price : ${price}</p>
-                <p className="text-warn font-bold">Available seats : ${available_seats}</p>
+                <p className="text-warn font-bold">Available seats : {available_seats}</p>
+                <p className="text-warn font-bold">enrolled : {enrolled ? enrolled : 0}</p>
                 <div className="card-actions justify-end">
                     <button onClick={user ? ()=>handleAddToCart(item) : loginAlert }  disabled = {isAdmin?.admin || isInstructor?.admin ||  available_seats === 0} className="btn btn-warning">Add to Cart</button>
                 </div>

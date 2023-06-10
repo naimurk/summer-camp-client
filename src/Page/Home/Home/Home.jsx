@@ -1,5 +1,6 @@
 import Banner from "../Banner/Banner";
 import ClassSection from "../CalassSection/ClassSection";
+import Faq from "../Faq/Faq";
 import InstructorSection from "../InstructorSection/InstructorSection";
 
 
@@ -9,6 +10,7 @@ const Home = () => {
             <Banner></Banner>
             <ClassSection></ClassSection>
             <InstructorSection></InstructorSection>
+            <Faq></Faq>
         </div>
     );
 };
