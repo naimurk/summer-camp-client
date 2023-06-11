@@ -47,7 +47,7 @@ const Navbar = () => {
             user ? <>
                 <li className=" mt-3 mx-4"> <NavLink to={'/dashBoard/userHome'}> DashBoard</NavLink></li>
                 <button className="btn mt-3 btn-outline btn-sm" onClick={handleLogout} >log Out </button>
-            </> : <li className=" mx-4"> <NavLink to={'/login'}> login</NavLink></li>
+            </> : <li className=" mt-3 mx-4"> <NavLink to={'/login'}> login</NavLink></li>
         }
 
         {

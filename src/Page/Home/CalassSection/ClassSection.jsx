@@ -1,6 +1,7 @@
 import useClasses from "../../../Hooks/useClasses";
 import { Fade, } from "react-awesome-reveal";
 import 'animate.css';
+import { Link } from "react-router-dom";
 
 
 
@@ -19,7 +20,7 @@ const ClassSection = () => {
                         </section>)
                     }
                 </div>
-                <div className="flex justify-center mt-12"><button className="btn btn-wide btn-warning">Explore Our Classes</button></div>
+                <div className="flex justify-center mt-12"><Link to={'/classes'}><button className="btn btn-wide btn-warning">Explore Our Classes</button></Link></div>
             </div>
         </Fade>
     );

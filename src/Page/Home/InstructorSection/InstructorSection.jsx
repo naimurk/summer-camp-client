@@ -3,6 +3,7 @@ import useInstructor from "../../../Hooks/useInstructor";
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import { Fade, Zoom } from "react-awesome-reveal";
+import { Link } from "react-router-dom";
 
 const InstructorSection = () => {
   const [instructors] = useInstructor();
@@ -34,7 +35,7 @@ const InstructorSection = () => {
           <p>No instructors found.</p>
         )}
       </div>
-      <div className="flex justify-center mt-12"><button className="btn btn-wide btn-warning">Know Our instructors</button></div>
+      <div className="flex justify-center mt-12"><Link to={'/instructors'}><button className="btn btn-wide btn-warning">Know Our instructors</button></Link></div>
     </div>
    </Zoom>
   );

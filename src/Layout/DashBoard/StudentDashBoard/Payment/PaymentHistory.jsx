@@ -8,11 +8,11 @@ const PaymentHistory = () => {
     const [paymentHistory] = usePaymenHistory()
     console.log(paymentHistory);
     return (
-        <div className="w-3/4 h-full mt-24 mx-auto bg-slate-400 p-14">
+        <div className="w-3/4 h-full mt-24 text-black mx-auto bg-slate-400 p-14">
             <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
-    <thead>
+    <thead className="text-black">
       <tr>
         <th></th>
         <th>email</th>

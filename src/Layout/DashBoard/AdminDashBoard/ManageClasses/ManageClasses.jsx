@@ -28,7 +28,12 @@ const ManageClasses = () => {
       
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data);
+      reset();
+      alert('submit successfully')
+      
+    })
 
    }
 
@@ -205,7 +210,7 @@ const ManageClasses = () => {
             <button className="btn mb-3 btn-warning" onClick={handleCloseModal}>X</button>
             <form onSubmit={handleSubmit(onSubmit)}>
               <input value={selectedClass?._id || ''} readOnly className="hidden" {...register("id")} />
-              <input type="text" className="input w-full" {...register("feedback", { required: true })} />
+              <input type="text" className="input border-2 border-black w-full" {...register("feedback", { required: true })} />
               {errors.feedback && <span>This field is required</span>}
               <input className="btn mt-3 btn-sm btn-primary" type="submit" />
             </form>

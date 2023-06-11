@@ -37,12 +37,12 @@ const Login = () => {
         .then(result => {
             const user = result.user ;
             console.log(user)
-            Swal.fire('you do not have account yet')
+            Swal.fire('login successfully ')
         })
         navigate(from, { replace: true });
     }
     else {
-      Swal.fire('Any fool can use a computer')
+      Swal.fire('you have not account yet')
     }
     // console.log(data);
     
