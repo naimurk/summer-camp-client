@@ -11,6 +11,11 @@
     color: black;
 }
 
+.dropdown a {
+    color: white;
+    background-color: #FBBD23;
+}
+
 .navbar a.active {
     color: red;
 }

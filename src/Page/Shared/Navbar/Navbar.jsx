@@ -38,15 +38,15 @@ const Navbar = () => {
 
     const navOptions = <>
 
-        <li className=" mx-4"> <NavLink to={'/'}> Home</NavLink></li>
-        <li className=" mx-4"> <NavLink to={'/classes'}> Classes</NavLink></li>
-        <li className=" mx-4"> <NavLink to={'/instructors'}> Instructors</NavLink></li>
+        <li className=" mt-3 mx-4"> <NavLink to={'/'}> Home</NavLink></li>
+        <li className=" mt-3 mx-4"> <NavLink to={'/classes'}> Classes</NavLink></li>
+        <li className=" mt-3 mx-4"> <NavLink to={'/instructors'}> Instructors</NavLink></li>
 
 
         {
             user ? <>
-                <li className=" mx-4"> <NavLink to={'/dashBoard/userHome'}> DashBoard</NavLink></li>
-                <button onClick={handleLogout} >log Out </button>
+                <li className=" mt-3 mx-4"> <NavLink to={'/dashBoard/userHome'}> DashBoard</NavLink></li>
+                <button className="btn mt-3 btn-outline btn-sm" onClick={handleLogout} >log Out </button>
             </> : <li className=" mx-4"> <NavLink to={'/login'}> login</NavLink></li>
         }
 

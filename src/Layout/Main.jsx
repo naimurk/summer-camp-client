@@ -7,7 +7,7 @@ const Main = () => {
     return (
         <div>
             <div className=""><Navbar></Navbar></div>
-            <div className="py-20"><Outlet></Outlet></div>
+            <div className="lg:py-28 py-16"><Outlet></Outlet></div>
             <Footer></Footer>
         </div>
     );
