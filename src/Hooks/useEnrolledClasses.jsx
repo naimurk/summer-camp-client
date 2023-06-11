@@ -13,7 +13,7 @@ const useEnrolledClasses = () => {
 
         
         queryFn: async ()=> {
-            const response = await fetch(`http://localhost:5000/payment?email=${user?.email}`,{
+            const response = await fetch(`https://summer-camp-server-naimurk.vercel.app/payment?email=${user?.email}`,{
                 headers : {
                     authorization : `bearer ${token}`
                 }

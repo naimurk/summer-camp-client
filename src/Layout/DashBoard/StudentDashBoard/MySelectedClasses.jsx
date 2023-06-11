@@ -13,7 +13,7 @@ const MySelectedClasses = () => {
 
   const handleDeletedCart = (id) => {
 
-    fetch(`http://localhost:5000/carts/${id}`, {
+    fetch(`https://summer-camp-server-naimurk.vercel.app/carts/${id}`, {
       method: 'DELETE'
     })
       .then(res => res.json())

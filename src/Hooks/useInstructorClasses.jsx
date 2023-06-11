@@ -12,7 +12,7 @@ const useInstructorClasses = () => {
 
         
         queryFn: async ()=> {
-            const response = await fetch(`http://localhost:5000/myClasses?email=${user?.email}`,{
+            const response = await fetch(`https://summer-camp-server-naimurk.vercel.app/myClasses?email=${user?.email}`,{
                 headers : {
                     authorization : `bearer ${token}`
                 }

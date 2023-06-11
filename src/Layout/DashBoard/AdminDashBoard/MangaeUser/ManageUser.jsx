@@ -13,7 +13,7 @@ const ManageUser = () => {
 
     setDisabledButtons(prevDisabledButtons => [...prevDisabledButtons, id]);
 
-    fetch(`http://localhost:5000/makeAdmin/${id}`, {
+    fetch(`https://summer-camp-server-naimurk.vercel.app/makeAdmin/${id}`, {
       method: 'PATCH'
     })
       .then(res => res.json())
@@ -38,7 +38,7 @@ const ManageUser = () => {
 
     setDisabledButtons(prevDisabledButtons => [...prevDisabledButtons, id]);
 
-    fetch(`http://localhost:5000/makeInstructor/${id}`, {
+    fetch(`https://summer-camp-server-naimurk.vercel.app/makeInstructor/${id}`, {
       method: 'PATCH',
       headers : {
         

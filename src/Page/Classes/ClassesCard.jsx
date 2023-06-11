@@ -25,7 +25,7 @@ const ClassesCard = ({ item }) => {
    const { _id, price, available_seats, enrolled, email,  classname, instructor_name,image} = item
     if(isStudent.admin && user) {
        const oderItem = { ClassId: _id, price, enrolled, instructor_email: email, available_seats, classname, instructor_name,image, email: user?.email}
-       fetch('http://localhost:5000/carts',
+       fetch('https://summer-camp-server-naimurk.vercel.app/carts',
              {
                 method : 'POST', 
                 headers : {

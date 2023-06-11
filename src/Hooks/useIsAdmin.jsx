@@ -11,7 +11,7 @@ const useIsAdmin = () => {
      queryKey : ['isAdmin', user?.email],
      queryFn : async ()=> {
         if(!loading && user?.email){
-            const response = await fetch(`http://localhost:5000/users/admin/${user?.email}`,{
+            const response = await fetch(`https://summer-camp-server-naimurk.vercel.app/users/admin/${user?.email}`,{
                 headers : {
                     authorization : `bearer ${token}`
                 }

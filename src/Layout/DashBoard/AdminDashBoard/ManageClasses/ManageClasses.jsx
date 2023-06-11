@@ -18,7 +18,7 @@ const ManageClasses = () => {
     // const id = data?.id
    if(data){
 
-    fetch(`http://localhost:5000/feedback/${data?.id}`, {
+    fetch(`https://summer-camp-server-naimurk.vercel.app/feedback/${data?.id}`, {
       method : 'PATCH',
       headers: {
         authorization: `bearer ${token}`,
@@ -50,7 +50,7 @@ const ManageClasses = () => {
     }
 
     setDisabledButtons(prevDisabledButtons => [...prevDisabledButtons, id]);
-    fetch(`http://localhost:5000/makeApproved/${id}`, {
+    fetch(`https://summer-camp-server-naimurk.vercel.app/makeApproved/${id}`, {
       method: 'PATCH',
       headers: {
         authorization: `bearer ${token}`
@@ -61,7 +61,7 @@ const ManageClasses = () => {
         // console.log(data);
         if (data.modifiedCount > 0) {
           refetch();
-          fetch('http://localhost:5000/classes', {
+          fetch('https://summer-camp-server-naimurk.vercel.app/classes', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -86,7 +86,7 @@ const ManageClasses = () => {
     }
 
     setDisabledButtons(prevDisabledButtons => [...prevDisabledButtons, id]);
-    fetch(`http://localhost:5000/makeDenied/${id}`, {
+    fetch(`https://summer-camp-server-naimurk.vercel.app/makeDenied/${id}`, {
       method: 'PATCH',
       headers: {
         authorization: `bearer ${token}`

@@ -28,7 +28,7 @@ const Checkout = ({ item }) => {
 
     useEffect(() => {
         if (price > 0) {
-            fetch('http://localhost:5000/create-payment-intent', {
+            fetch('https://summer-camp-server-naimurk.vercel.app/create-payment-intent', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -146,7 +146,7 @@ const Checkout = ({ item }) => {
 
 
 
-            fetch('http://localhost:5000/payment', {
+            fetch('https://summer-camp-server-naimurk.vercel.app/payment', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
@@ -157,7 +157,7 @@ const Checkout = ({ item }) => {
                 .then(data => {
                     if (data.result.insertedId) {
                         refetch();
-                        fetch(`http://localhost:5000/classes/update/${ClassId}`, {
+                        fetch(`https://summer-camp-server-naimurk.vercel.app/classes/update/${ClassId}`, {
                             method: 'PATCH',
                             headers: {
                                 'content-type': 'application/json',
@@ -171,7 +171,7 @@ const Checkout = ({ item }) => {
                             .then(data => {
                                 console.log(data);
                                 if (data?.modifiedCount > 0) {
-                                    fetch(`http://localhost:5000/updateEnrolled/${ClassId}`, {
+                                    fetch(`https://summer-camp-server-naimurk.vercel.app/updateEnrolled/${ClassId}`, {
                                         method: 'PATCH',
                                         headers: {
                                             'content-type': 'application/json',
@@ -184,7 +184,7 @@ const Checkout = ({ item }) => {
                                         .then(res => res.json())
                                         .then(data => {
                                             if (data.modifiedCount > 0) {
-                                                fetch(`http://localhost:5000/addEnrolled-user/${instructor_email}`, {
+                                                fetch(`https://summer-camp-server-naimurk.vercel.app/addEnrolled-user/${instructor_email}`, {
                                                     method: 'PATCH',
                                                     headers: {
                                                         'content-type': 'application/json',
