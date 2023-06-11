@@ -134,7 +134,9 @@ const Checkout = ({ item }) => {
                 image: image,
                 price: price,
                 enrolled: enrolled,
-                instructor_email: instructor_email
+                instructor_email: instructor_email,
+                amount : paymentIntent?.amount,
+                transactionId : paymentIntent?.id
 
 
             }

@@ -52,7 +52,7 @@ const Navbar = () => {
 
         {
             isStudent?.admin && <li>
-                <NavLink to={'/dashboard/my-cart'} ><button className="btn gap-2">
+                <NavLink to={'/dashBoard/myCart'} ><button className="btn btn-warning gap-2">
                     <BsFillCartCheckFill></BsFillCartCheckFill>
                     <div className="badge badge-secondary">{carts ? carts.length : 0}</div>
                 </button></NavLink>

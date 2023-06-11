@@ -20,6 +20,7 @@ import InstructorRoutes from "./InstructorRoutes";
 import AddClass from "../Layout/DashBoard/InstructorDashBoard/AddClass/AddClass";
 import MyAddedClasses from "../Layout/DashBoard/InstructorDashBoard/MyAddedClass/MyAddedClasses";
 import ManageClasses from "../Layout/DashBoard/AdminDashBoard/ManageClasses/ManageClasses";
+import PaymentHistory from "../Layout/DashBoard/StudentDashBoard/Payment/PaymentHistory";
 
 
  export const router = createBrowserRouter([
@@ -60,6 +61,10 @@ import ManageClasses from "../Layout/DashBoard/AdminDashBoard/ManageClasses/Mana
         {
           path : 'payment',
           element : <StudentRoutes><Payment></Payment></StudentRoutes>
+        },
+        {
+           path : "payment-history",
+           element : <StudentRoutes><PaymentHistory></PaymentHistory></StudentRoutes>
         },
         {
           path : 'enrolled',

@@ -11,7 +11,7 @@ const InstructorSection = () => {
   return (
    <Zoom >
         <div className=" py-8 lg:py-24">
-      <h1 className="text-center text-3xl font-semibold ">
+      <h1 className="text-center text-3xl font-semibold">
         Our Instructors
       </h1>
       <div className=" grid grid-cols-1 lg:grid-cols-3 lg:gap-12 justify-center items-center mt-20 w-1/2 mx-auto ">
@@ -21,9 +21,9 @@ const InstructorSection = () => {
               <ImageGallery
                 items={[
                   {
-                    original: item?.image,
-                    thumbnail: item?.image,
-                    description: item?.instructor_name,
+                    original: item?.photo,
+                    thumbnail: item?.photo,
+                    description: item?.name,
                     
                   },
                 ]}

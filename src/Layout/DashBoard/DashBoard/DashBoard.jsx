@@ -34,6 +34,7 @@ const DashBoard = () => {
                         <>
                         <li className="my-3"><NavLink to={'/dashBoard/myCart'}>My Selected Classes</NavLink></li>
                         <li className="my-3"><NavLink to={'/dashBoard/enrolled'}>My Enrolled Classes</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/payment-history'}>Payment History </NavLink></li>
                         </>
                     }
                     {

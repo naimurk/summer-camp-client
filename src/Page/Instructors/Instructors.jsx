@@ -8,9 +8,9 @@ const Instructors = () => {
     const {user} = useContext(AuthContext)
     // console.log(user);
     const [instructors] = useInstructor();
-    // console.log(instructors);
+    console.log(instructors);
     return (
-        <div className="w-3/4 mx-auto">
+        <div className="w-3/4 py-24 mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-center items-center">
                  {
                     instructors.map(item => <InstructorCard
