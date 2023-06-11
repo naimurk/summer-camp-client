@@ -6,8 +6,12 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import useAllusers from "../../Hooks/useAllusers";
+import Lottie from "lottie-react";
+import loginjson from '../../../login.json'
 
 const Login = () => {
+  const [allUser] = useAllusers()
   const [showPassword, setShowPassword] = useState(false);
   const { signIn } = useContext(AuthContext);
   const {
@@ -27,29 +31,32 @@ const Login = () => {
   };
 
   const onSubmit = (data) => {
-    
-    console.log(data);
-    signIn(data.email,data.password)
+    const filter = allUser.find(item => item?.email == data.email)
+    if(filter){
+      signIn(data.email,data.password)
         .then(result => {
             const user = result.user ;
             console.log(user)
-            Swal.fire('login successfully ')
+            Swal.fire('you do not have account yet')
         })
         navigate(from, { replace: true });
+    }
+    else {
+      Swal.fire('Any fool can use a computer')
+    }
+    // console.log(data);
+    
   };
 
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">login!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+      <div className="hero-content justify-center w-full items-center gap-x-14 flex-col lg:flex-row">
+        <div className="text-center w-1/2 ">
+           <Lottie animationData={loginjson}></Lottie>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-1/2 max-w-sm shadow-2xl bg-base-100">
+        <h1 className="text-5xl text-center mt-4 font-bold">login!</h1>
+
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             {/* field 2*/}
             <div className="form-control">
@@ -77,7 +84,7 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password", {
-                    minLength: 8,
+                    
                   })}
                   name="password"
                   placeholder="password"
@@ -93,20 +100,18 @@ const Login = () => {
                   />
                 </button>
               </div>
-              {errors.password?.type === "minLength" && (
-                <p>password must have at least 8 characters</p>
-              )}
+             
             </div>
 
             {/* field 4 */}
             <div className="form-control mt-6">
               <input
-                className="btn btn-primary"
+                className="btn btn-warning"
                 type="submit"
-                value="sign up"
+                value="login"
               />
-              <Link to={"/login"}>
-                <p>log in</p>
+              <Link to={"/signUp"}>
+                <p className="p-5 btn btn-sm mt-3">signUp</p>
               </Link>
             </div>
           </form>

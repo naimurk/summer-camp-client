@@ -7,6 +7,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAllusers from "../../Hooks/useAllusers";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import sigupjson from '../../../signup.json'
+import Lottie from "lottie-react";
 
 const SignUp = () => {
   const [allUser] = useAllusers()
@@ -24,10 +26,10 @@ const SignUp = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
- 
 
 
-  const onSubmit =  (data) => {
+
+  const onSubmit = (data) => {
 
     const person = allUser.find(s => s.email === data.email)
 
@@ -36,60 +38,60 @@ const SignUp = () => {
       Swal.fire("Error", "Passwords do not match", "error");
       return;
     }
-    console.log(data.email, data.password ,data);
+    console.log(data.email, data.password, data);
 
 
-    if(person?.email){
+    if (person?.email) {
       Swal.fire({
         icon: 'error',
         title: 'Email already exist!',
         text: '',
-        
+
       })
     }
     else {
       createUser(data.email, data.password)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
+        .then(result => {
+          const user = result.user;
+          console.log(user);
 
-        // update function call here 
-        UserUpdateProfile(data.name, data.photo)
-          .then(() => {
-            const student = "student"
-            const saveUser = { name: data.name, email: data.email, photo: data.photo,  role: student }
-            fetch('http://localhost:5000/users', {
-              method: "POST",
-              headers: {
-                'content-type': "application/json"
-              },
-              body: JSON.stringify(saveUser)
-            })
-              .then(res => res.json())
-              .then(data => {
-                if (data.insertedId) {
-                  reset();
-                  // login function call here 
-                  logOut()
-                    .then(() => { })
-                    .catch(error => console.log(error))
-                  Swal.fire('Created Account successfully ')
-                  navigate(from, { replace: true });
-
-                }
+          // update function call here 
+          UserUpdateProfile(data.name, data.photo)
+            .then(() => {
+              const student = "student"
+              const saveUser = { name: data.name, email: data.email, photo: data.photo, role: student }
+              fetch('http://localhost:5000/users', {
+                method: "POST",
+                headers: {
+                  'content-type': "application/json"
+                },
+                body: JSON.stringify(saveUser)
               })
+                .then(res => res.json())
+                .then(data => {
+                  if (data.insertedId) {
+                    reset();
+                    // login function call here 
+                    logOut()
+                      .then(() => { })
+                      .catch(error => console.log(error))
+                    Swal.fire('Created Account successfully ')
+                    navigate(from, { replace: true });
 
-          })
+                  }
+                })
+
+            })
 
 
 
-      })
+        })
     }
 
 
 
 
-   
+
 
   };
 
@@ -102,17 +104,16 @@ const SignUp = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Sign UP !</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+    <div className="hero  min-h-screen bg-base-200">
+      <div className="hero-content w-full gap-x-16 flex-col lg:flex-row">
+        <div className="text-center w-1/2 ">
+          
+          <div>
+               <Lottie animationData={sigupjson}></Lottie>
+          </div>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-1/2 flex-shrink-0  max-w-sm shadow-2xl bg-base-100">
+        <h1 className="text-3xl text-center pt-5 font-bold">Sign UP !</h1>
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             {/* field 1 */}
             <div className="form-control">
@@ -173,7 +174,11 @@ const SignUp = () => {
                   type={showPassword ? "text" : "password"}
                   {...register("password", {
                     required: true,
-                    minLength: 8,
+                    maxLength: 6,
+                    pattern: {
+                      value: /^(?=.*?[a-z])(?=.*?\d)[a-z\d]+$/,
+                      // message: "Password must not contain special characters or capital letters",
+                    },
                   })}
                   name="password"
                   placeholder="password"
@@ -187,8 +192,11 @@ const SignUp = () => {
                   <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                 </button>
               </div>
-              {errors.password?.type === "minLength" && (
-                <p>password must have at least 8 characters</p>
+              {errors.password?.type === "maxLength" && (
+                <p>password must have less then 6 characters</p>
+              )}
+              {errors.password?.type === "pattern" && (
+                <p>Password must not contain special characters or capital letters</p>
               )}
             </div>
 
@@ -217,10 +225,10 @@ const SignUp = () => {
 
             {/* field 5 */}
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="sign up" />
-              <Link to={"/login"}>
-                <p>log in</p>
-              </Link>
+              <input className="btn btn-warning" type="submit" value="sign up" />
+              <p className='text-yellow-600'>already have an account? <Link to={"/login"}>
+                <span className="btn btn-sm">login </span>
+              </Link></p>
             </div>
           </form>
           <SocialLogin></SocialLogin>
