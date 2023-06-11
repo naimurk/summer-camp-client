@@ -45,7 +45,7 @@ const MySelectedClasses = () => {
   return (
     <div className="overflow-x-auto bg-slate-400 mx-auto w-3/4 p-12">
       <h1 className="text-3xl font-bold text-black">Total Classes : {carts?.length}</h1>
-      <div className="flex justify-end"><Link to={'/dashBoard/payment'}><button className="btn bg-purple-600">pay</button></Link></div>
+      <div className="flex justify-end"></div>
       <table className="table shadow-2xl ">
         {/* head */}
         <thead className="text-black text-sm font-bold">

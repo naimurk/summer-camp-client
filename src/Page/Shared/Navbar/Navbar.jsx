@@ -45,7 +45,7 @@ const Navbar = () => {
 
         {
             user ? <>
-                <li className=" mx-4"> <NavLink to={'/dashBoard'}> DashBoard</NavLink></li>
+                <li className=" mx-4"> <NavLink to={'/dashBoard/userHome'}> DashBoard</NavLink></li>
                 <button onClick={handleLogout} >log Out </button>
             </> : <li className=" mx-4"> <NavLink to={'/login'}> login</NavLink></li>
         }
@@ -63,7 +63,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div className="navbar p-3 lg:p-5 fixed z-10 bg-opacity-40  bg-black">
+        <div className="navbar p-3 lg:p-5 fixed z-10 bg-opacity-40 text-base-content bg-black">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

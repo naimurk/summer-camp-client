@@ -21,12 +21,15 @@ import AddClass from "../Layout/DashBoard/InstructorDashBoard/AddClass/AddClass"
 import MyAddedClasses from "../Layout/DashBoard/InstructorDashBoard/MyAddedClass/MyAddedClasses";
 import ManageClasses from "../Layout/DashBoard/AdminDashBoard/ManageClasses/ManageClasses";
 import PaymentHistory from "../Layout/DashBoard/StudentDashBoard/Payment/PaymentHistory";
+import Error from "../Page/Error/Error";
+import UserHome from "../Layout/DashBoard/UserHome";
 
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <Error></Error>,
       children : [
         {
             path : '/',
@@ -53,7 +56,12 @@ import PaymentHistory from "../Layout/DashBoard/StudentDashBoard/Payment/Payment
     {
       path: "dashBoard",
       element: <PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
+      errorElement: <Error></Error>,
       children : [
+        {
+            path : 'userHome',
+            element : <PrivateRoutes><UserHome></UserHome></PrivateRoutes>
+        },
         {
           path : 'myCart',
           element : <StudentRoutes><MySelectedClasses></MySelectedClasses></StudentRoutes>

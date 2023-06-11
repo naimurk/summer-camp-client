@@ -4,6 +4,26 @@ import useIsStudent from "../../../Hooks/useIsStudent";
 import useIsInstructor from "../../../Hooks/useIsInstructor";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { AiFillHome } from 'react-icons/ai';
+
+import { MdPayment,MdClass,MdLibraryAddCheck } from 'react-icons/md';
+import { FaUserFriends,FaChalkboardTeacher } from 'react-icons/fa';
+import { BiAddToQueue} from 'react-icons/bi';
+
+// import { MdPayment } from 'react-icons/md';
+import { MdCloudDone,MdOutlineDownloadDone } from 'react-icons/md';
+// import { IoCheckmarkDoneSharp } from 'react-icons/io';
+// AiFillHome
+// BsFillBookmarkFill
+// MdPayment
+// BiSolidSelectMultiple
+
+// istructor
+// BiSolidMessageAdd
+// MdLibraryAddCheck
+
+// FaUserFriends
+// MdClass
 
 
 const DashBoard = () => {
@@ -22,41 +42,41 @@ const DashBoard = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 mt-24 h-full bg-base-200 text-base-content">
+                <ul className="menu py-12 px-8 w-80  h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
 
                     {
-                       user && <li><NavLink to={'/dashboard'}> user home</NavLink></li> 
+                       user && <li><NavLink to={'/dashboard/userHome'}> <AiFillHome></AiFillHome> user home</NavLink></li> 
                     }
 
                     {
                         isStudent?.admin && 
                         <>
-                        <li className="my-3"><NavLink to={'/dashBoard/myCart'}>My Selected Classes</NavLink></li>
-                        <li className="my-3"><NavLink to={'/dashBoard/enrolled'}>My Enrolled Classes</NavLink></li>
-                        <li className="my-3"><NavLink to={'/dashBoard/payment-history'}>Payment History </NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/myCart'}> <MdOutlineDownloadDone></MdOutlineDownloadDone>  My Selected Classes</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/enrolled'}> <MdCloudDone></MdCloudDone>  My Enrolled Classes</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/payment-history'}> <MdPayment></MdPayment> Payment History </NavLink></li>
                         </>
                     }
                     {
                         isInstructor?.admin && 
                         <>
-                        <li className="my-3"><NavLink to={'/dashBoard/addClass'}>Add Class</NavLink></li>
-                        <li className="my-3"><NavLink to={'/dashBoard/myAddedClass'}>My Classes</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/addClass'}> <BiAddToQueue></BiAddToQueue> Add Class</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/myAddedClass'}> <MdLibraryAddCheck></MdLibraryAddCheck> My Classes</NavLink></li>
                         </>
                     }
                     {
                         isAdmin?.admin && 
                         <>
-                        <li className="my-3"><NavLink to={'/dashBoard/manage-classes'}>Manage Classes</NavLink></li>
-                        <li className="my-3"><NavLink to={'/dashBoard/manage-users'}>Manage User</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/manage-classes'}> <MdClass></MdClass> Manage Classes</NavLink></li>
+                        <li className="my-3"><NavLink to={'/dashBoard/manage-users'}>  <FaUserFriends></FaUserFriends> Manage User</NavLink></li>
                         </>
                     }
                   
                   <div className="divider "></div>
                   
-                  <li className="my-3"><NavLink to={'/home'}>Home</NavLink></li>
-                  <li className="my-3"><NavLink to={'/classes'}>classes</NavLink></li>
-                  <li className="my-3"><NavLink to={'/instructors'}>instructors</NavLink></li>
+                  <li className="my-3"><NavLink to={'/'}> <AiFillHome></AiFillHome> Home</NavLink></li>
+                  <li className="my-3"><NavLink to={'/classes'}> <MdClass></MdClass> classes</NavLink></li>
+                  <li className="my-3"><NavLink to={'/instructors'}> <FaChalkboardTeacher></FaChalkboardTeacher> instructors</NavLink></li>
 
                 </ul>
 
