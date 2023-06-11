@@ -3,7 +3,7 @@ import { Elements} from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Checkout from "../Checkout/Checkout";
 import { useLocation } from "react-router-dom";
-const stripePromise = loadStripe('pk_test_51NFV1sCJxnWqbAIJ156QGc5eUMNrjRJxnXBUQX8AaACgtOAQC2LdoFYWULXrxKUvohLVwePcqTfgNfSCv1gLHwh300q6KMkB94');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_SECRET);
 
 const Payment = () => {
     const location = useLocation();
